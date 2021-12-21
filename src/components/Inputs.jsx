@@ -7,8 +7,10 @@ function Inputs({ input }) {
         return (
           <div className='child' key={entry.id}>
             <button>Edit</button>
-            <h2>{entry.name}</h2>
-            <h2>{entry.age}</h2>
+            <div>
+              <span>{entry.name}</span>
+              <span>{entry.age}</span>
+            </div>
             <button>Delete</button>
           </div>
         );
