@@ -1,17 +1,23 @@
 import React from "react";
 
-function Inputs({ input }) {
+function Inputs({ input, Delete, Edit }) {
+  function eventHandler(prop) {
+    Delete(prop);
+  }
+  function editHandler(prop) {
+    Edit(prop);
+  }
   return (
     <div className='core'>
       {input.map((entry) => {
         return (
           <div className='child' key={entry.id}>
-            <button>Edit</button>
+            <button onClick={() => editHandler(entry.id)}>Edit</button>
             <div>
               <span>{entry.name}</span>
               <span>{entry.age}</span>
             </div>
-            <button>Delete</button>
+            <button onClick={() => eventHandler(entry.id)}>Delete</button>
           </div>
         );
       })}
