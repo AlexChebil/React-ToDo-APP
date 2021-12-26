@@ -13,6 +13,7 @@ body {
     background-color: rgba(255, 255, 255, 0);
     border-bottom: 1px solid pink;
   }
+
   input:nth-child(2) {
     width: 8em;
   }
@@ -46,4 +47,18 @@ body {
   button {
     margin: 0 2em;
   }
+}
+
+.edit {
+  display: none;
+}
+.edit.active {
+  display: block;
+  :nth-child(1n + 1) {
+    width: auto !important;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(126, 211, 126);
 }
