@@ -10,12 +10,17 @@ function App() {
   const EditRefAge = useRef();
 
   const [agents, updateAgents] = useState([]);
+
   const [required, setRequired] = useState(false); //for the warning on blank submit
+
   const [editToggle, setEditToggle] = useState(false);
+
   const [editName, setEditName] = useState("");
+
   const [editAge, setEditAge] = useState(Number); //set to number to deal with a warning in console
 
   const uuid = uuidv4(); // for the agents {id}
+
   const agentsNumber = agents.length;
 
   function addAgents(e) {
@@ -61,16 +66,25 @@ function App() {
     );
   }
 
-  function editSubmitButton(prop) {
-    let agentsClone2 = agents;
-    let foundIndex = agentsClone2.findIndex((entry) => entry.id === prop);
-    let foundElem = agentsClone2.find((entry) => entry.id === prop);
+  function EditSubmitButton(prop) {
+    let foundIndex = agents.findIndex((entry) => entry.id === prop);
+
     let EditRefNameValue = EditRefName.current.value; // the current value for the name input
-    let EditRefAgeValue = EditRefAge.current.value;
+
+    let EditRefAgeValue = EditRefAge.current.value; // the current value for the age input
+
+    let x = agents.length - foundIndex;
+
     updateAgents((prev) => {
       return [
         ...prev,
-        { name: EditRefNameValue[foundIndex], age: EditRefAgeValue, id: uuid },
+        {
+          name: EditRefNameValue,
+          age: EditRefAgeValue,
+          id: uuid,
+        },
+        ...prev.splice(foundIndex, x),
+        //...prev.pop(),
       ];
     });
   }
@@ -85,7 +99,7 @@ function App() {
         Delete={Delete}
         Edit={Edit}
         editToggle={setEditToggle}
-        editButton={editSubmitButton}
+        editButton={EditSubmitButton}
       />
 
       <form>
@@ -120,7 +134,7 @@ function App() {
             ref={EditRefAge}
             required
           />
-          <button onClick={() => editSubmitButton()}>EDIT SUBMIT</button>
+          <button onClick={() => EditSubmitButton()}>EDIT SUBMIT</button>
         </div>
       </form>
     </div>
